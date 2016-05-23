@@ -129,8 +129,8 @@ module.exports = function(grunt) {
                         var commonMap = {
                             utiljs: {
                                 reg: /(?:\/public\/js\/)(\S+)(?:\/extra\.min\.js)((\?v=)(\w+))?/g,
-                                path: 'bin/public/js/common/extra.min.js',
-                                prefix: '/public/js/common/extra.min_',
+                                path: 'bin/public/js/ExtraCommon/extra.min.js',
+                                prefix: '/public/js/ExtraCommon/extra.min_',
                                 type: '.js'
                             }
                         };
@@ -175,9 +175,9 @@ module.exports = function(grunt) {
                     }
                 },
                 files: [{
-                    cwd: './bin/module',
-                    src: ["**/*.html"],
-                    dest: './bin/views',
+                    cwd: './bin/views',
+                    src: ["**/*.php"],
+                    dest: './bin/module',
                     expand: true
                 }]
             }
@@ -194,7 +194,7 @@ module.exports = function(grunt) {
             simulatepay: {
                 files: {
                     "<%= dirs.dest_path %>SimulatePay.html": "<%= dirs.source_path %><%= dirs.jade %>SimulatePay/develop.jade",
-                    "<%= dirs.dest_path %>module/pay/wx/SimulatePay.html": "<%= dirs.source_path %><%= dirs.jade %>SimulatePay/formal.jade"
+                    "<%= dirs.dest_path %>views/SimulatePay.php": "<%= dirs.source_path %><%= dirs.jade %>SimulatePay/formal.jade"
                 }
             }
         },
@@ -252,7 +252,7 @@ module.exports = function(grunt) {
         hashmap: {
             options: {
                 // These are default options
-                output: '#{= dest}/Manage/hash.json',
+                output: '#{= dest}/Extra/hash.json',
                 etag: null, // See below([#](#option-etag))
                 algorithm: 'md5', // the algorithm to create the hash
                 rename: '#{= dirname}/#{= basename}_#{= hash}#{= extname}', // save the original file as what
@@ -310,10 +310,10 @@ module.exports = function(grunt) {
             },
             module: {
                 options: {
-                    path: '<%= secret.path %>/application'
+                    path: '<%= secret.path %>'
                 },
                 files: {
-                    "./": ["<%= dirs.dest_path %>views/**/*.html"]
+                    "./": ["<%= dirs.dest_path %>module/*.php"]
                 }
             },
             config: {

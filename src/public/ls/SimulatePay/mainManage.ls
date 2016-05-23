@@ -31,7 +31,7 @@ main-manage = let
 
 	_get-data-for-require = ->
 		data = {}; _r = {};
-		_r.amount = _price-input-dom.val!; _r.openid = _open-id
+		_r.amount = _price-input-dom.val!
 		data.JSON = JSON.stringify _r
 		data.url = _url
 		return data
@@ -44,10 +44,10 @@ main-manage = let
 			signature: result.signature
 			package: result.package
 			signMD: result.signMD
-			callback: _success-callback-for-weixin-pay
+			callback: -> _success-callback-for-weixin-pay!
 		}
 
-	_success-callback-for-weixin-pay = !-> history.go(-1)		
+	_success-callback-for-weixin-pay = !-> history.go(-1); alert "支付成功, 请关闭页面"; 
 
 
 	_price-input-change-event = !->
@@ -56,10 +56,13 @@ main-manage = let
 		else _enable-btn!
 
 	_tranfer-btn-click-event = !->
-		if _able then require_.get("weixinPay").require {
-			data 		: 		_get-data-for-require!
-			callback 	: 		_success-callback-for-ajax
-		}
+		if _able
+			_disable-btn!
+			require_.get("weixinPay").require {
+				data 		: 		_get-data-for-require!
+				callback 	: 		_success-callback-for-ajax
+				always 		: 		-> _price-input-change-event!
+			}
 
 	initial: !->
 		_init-all-Data!
