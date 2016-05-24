@@ -4,7 +4,7 @@ main-manage = let
 	_price-input-dom 	= $ "input\#price"
 	_tranfer-btn-dom 	= $ ".tranfer-btn"
 	_main-container-dom = $ "\#main-container"
-	_finish-amount-dom 	= $ "\#Payment-container p.amount"
+	_finish-amount-dom 	= $ ".Payment-container p.amount"
 
 	_url 				= null
 	_able 				= false
