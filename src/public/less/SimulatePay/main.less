@@ -17,6 +17,11 @@
     display: none;
 }
 
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
 body {
     background-color: #F0EFF5;
     color: @font-black-color;
@@ -151,76 +156,171 @@ a {
     -webkit-line-clamp: @num;
     -webkit-box-orient: vertical;
 }
-
+#braeco, #braeco-main {
+    height: 100%;
+}
 #braeco-main {
     #main-wrapper {
-        width: 92%;
-        margin: 0 auto;
-        #ReceiverInfo {
-            .ReceiverInfo-wrapper {
-                .ReceiverInfo-container {
-                    padding: 17px 0;
-                    text-align: center;
-                    .img-field {
-                        margin: 0 auto;
-                        img {
-                            width: 65px;
-                            height: 65px;
-                            .rounded-corners(3px);
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        #main-container {
+            width: 200%;
+            .transition(0.5s);
+            min-height: 100%;
+            &.finish {
+                .translate(-50%, 0);
+                background-color: #fff;
+            }
+            > *:not(.clear) {
+                width: 50%;
+                float: left;
+            }
+            #Pay {
+                .Pay-wrapper {
+                    width: 92%;
+                    margin: 0 auto;
+                    .Pay-container {
+                        #ReceiverInfo {
+                            .ReceiverInfo-wrapper {
+                                .ReceiverInfo-container {
+                                    padding: 17px 0;
+                                    text-align: center;
+                                    .img-field {
+                                        margin: 0 auto;
+                                        img {
+                                            width: 65px;
+                                            height: 65px;
+                                            .rounded-corners(3px);
+                                        }
+                                    }
+                                    .name-field {
+                                        margin: 6px;
+                                        line-height: 21px;
+                                        font-size: 15px;
+                                        color: #7A797E;
+                                    }
+                                }
+                            }
                         }
-                    }
-                    .name-field {
-                        margin: 6px;
-                        line-height: 21px;
-                        font-size: 15px;
-                        color: #7A797E;
+                        #AmountInput {
+                            border: solid 1px #D6D6D8;
+                            background-color: #fff;
+                            .AmountInput-warpper {
+                                .AmountInput-container {
+                                    padding: 19px 20px 14px 20px;
+                                    .top-field {
+                                        line-height: 20px;
+                                        color: #525252;
+                                        font-size: 14px;
+                                    }
+                                    .input-field {
+                                        font-family: san francisco;
+                                        font-weight: 200;
+                                        margin-top: 7px;
+                                        height: 80px;
+                                        p.symbol {
+                                            margin-top: 8px;
+                                            line-height: 42px;
+                                            font-size: 30px;
+                                        }
+                                        input {
+                                            max-width: 200px;
+                                            height: 80px;
+                                            line-height: 80px;
+                                            font-size: 55px;
+                                            border: none;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        #TransferBtn {
+                            .TransferBtn-wrapper {
+                                margin-top: 37px;
+                                .btn-field {
+                                    .tranfer-btn {
+                                        text-align: center;
+                                        background-color: #1AAD19;
+                                        .rounded-corners(6px);
+                                        color: #fff;
+                                        line-height: 47px;
+                                        font-size: 18px;
+                                        &.disabled {
+                                            opacity: 0.4;
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
-        }
-        #AmountInput {
-            border: solid 1px #D6D6D8;
-            background-color: #fff;
-            .AmountInput-warpper {
-                .AmountInput-container {
-                    padding: 19px 20px 14px 20px;
-                    .top-field {
-                        line-height: 20px;
-                        color: #525252;
-                        font-size: 14px;
-                    }
-                    .input-field {
-                        margin-top: 7px;
-                        height: 80px;
-                        p.symbol {
-                            margin-top: 8px;
-                            line-height: 42px;
-                            font-size: 30px;
-                        }
-                        input {
-                            max-width: 250px;
-                            height: 80px;
-                            line-height: 80px;
-                            font-size: 55px;
-                            border: none;
-                        }
-                    }
-                }
-            }
-        }
-        #TransferBtn {
-            .TransferBtn-wrapper {
-                margin-top: 37px;
-                .btn-field {
-                    .tranfer-btn {
+            #Finish {
+                .Finish-wrapper {
+                    width: 94.67%;
+                    margin: 0 auto;
+                    .Finish-container {
                         text-align: center;
-                        background-color: #1AAD19;
-                        .rounded-corners(6px);
-                        color: #fff;
-                        line-height: 47px;
-                        font-size: 18px;
-                        &.disabled {
-                            opacity: 0.4;
+                        #Payment {
+                            .Payment-wrapper {
+                                .Payment-container {
+                                    padding: 41px 0 6px 0;
+                                    .icon-field {
+                                        margin: 0 auto;
+                                        width: 60px;
+                                        .wx-icon {
+                                            .background-norm();
+                                            .background-size(60px, 60px);
+                                        }
+                                    }
+                                    .word-field {
+                                        line-height: 26px;
+                                        font-size: 19px;
+                                        color: #1EA300;
+                                        margin-top: 5px;
+                                    }
+                                    .amount-field {
+                                        font-family: san francisco;
+                                        font-size: 36px;
+                                        line-height: 50px;
+                                        font-weight: 200;
+                                        p:before {
+                                            font-weight: 100;
+                                            content: "￥";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        #Receiver {
+                            .Receiver-wrapper {
+                                margin-top: 7px;
+                                .Receiver-container {
+                                    border-top: solid 1px #DFDFDF;
+                                    border-bottom: solid 1px #DFDFDF;
+                                    .receiver-field {
+                                        line-height: 40px;
+                                        font-size: 15px;
+                                        color: #888888;
+                                    }
+                                }
+                            }
+                        }
+                        #FinishBtn {
+                            .FinishBtn-wrapper {
+                                margin-top: 20px;
+                                .FinishBtn-container {
+                                    .btn-field {
+                                        .finish-btn {
+                                            line-height: 46px;
+                                            background-color: #1AAD19;
+                                            color: #fff;
+                                            .rounded-corners(6px);
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }

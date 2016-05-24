@@ -238,7 +238,7 @@ module.exports = function(grunt) {
                     debounceDelay: debounceDelay
                 },
                 files: [
-                    '<%= dirs.source_path %>**/SimulatePay/**',
+                    '<%= dirs.source_path %>**/SimulatePay/**/**',
                 ],
                 tasks: [
                     'less:simulatepay',

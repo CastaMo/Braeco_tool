@@ -1,18 +1,16 @@
 require_ = wx = null
 main-manage = let
 
-	_open-id-dom 		= $ "\#hide-info \#wx"
 	_price-input-dom 	= $ "input\#price"
 	_tranfer-btn-dom 	= $ ".tranfer-btn"
+	_main-container-dom = $ "\#main-container"
+	_finish-amount-dom 	= $ "\#Payment-container p.amount"
 
-	_open-id 			= null
 	_url 				= null
 	_able 				= false
 
 	_init-all-Data = !->
 		_url 		:= location.pathname.split("/").pop()
-		_open-id 	:= Number _open-id-dom.html!
-		_open-id-dom.parent!.remove!		
 
 	_init-depend-module = !->
 		require_ 	:= 		require "./requireManage.js"
@@ -47,7 +45,9 @@ main-manage = let
 			callback: -> _success-callback-for-weixin-pay!
 		}
 
-	_success-callback-for-weixin-pay = !-> history.go(-1); alert "支付成功, 请关闭页面"; 
+	_success-callback-for-weixin-pay = !->
+		_main-container-dom.add-class "finish"
+		_finish-amount-dom.html Number(_price-input-dom.val!)
 
 
 	_price-input-change-event = !->
