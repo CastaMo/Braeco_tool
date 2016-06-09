@@ -60,7 +60,7 @@ main-manage = let
 			_disable-btn!
 			require_.get("weixinPay").require {
 				data 		: 		_get-data-for-require!
-				callback 	: 		_success-callback-for-ajax
+				callback 	: 		-> _success-callback-for-ajax!
 				always 		: 		-> _price-input-change-event!
 			}
 
