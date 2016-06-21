@@ -1,0 +1,19 @@
+#CouponRule
+	.CouponRule-wrapper
+		.CouponRule-container
+			.title-field
+				p 代金券使用规则
+			.content-field
+				p 1. 本券仅限在餐厅: 
+					block dinnerName
+					span 使用;
+				p 2. 每个微信号限领 
+					block getMax
+					span  张代金券;
+				p 3. 订单消费满 
+					block costRule
+					span  可用，最多可同时使用 
+					block useMax
+					span  张;
+				p 4. 本券有效期至 
+					block endDate

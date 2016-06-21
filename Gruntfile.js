@@ -28,7 +28,7 @@ module.exports = function(grunt) {
     grunt.initConfig({
         // Metadata.
         pkg: grunt.file.readJSON('package.json'),
-        secret: grunt.file.readJSON('../secret_for_formal.json'),
+        secret: grunt.file.readJSON('../secret.json'),
         dirs: grunt.file.readJSON('dirs.json'),
 
         banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
@@ -196,6 +196,12 @@ module.exports = function(grunt) {
                     "<%= dirs.dest_path %>SimulatePay.html": "<%= dirs.source_path %><%= dirs.jade %>SimulatePay/develop.jade",
                     "<%= dirs.dest_path %>views/SimulatePay.php": "<%= dirs.source_path %><%= dirs.jade %>SimulatePay/formal.jade"
                 }
+            },
+            couponadd: {
+                files: {
+                    "<%= dirs.dest_path %>CouponAdd.html": "<%= dirs.source_path %><%= dirs.jade %>CouponAdd/develop.jade",
+                    "<%= dirs.dest_path %>views/CouponAdd.php": "<%= dirs.source_path %><%= dirs.jade %>CouponAdd/formal.jade"
+                }
             }
         },
         less: {
@@ -207,6 +213,12 @@ module.exports = function(grunt) {
                 files: {
                     "<%= dirs.dest_path %><%= dirs.css %>SimulatePay/main.css": "<%= dirs.source_path %><%= dirs.less %>SimulatePay/main.less",
                     "<%= dirs.dest_path %><%= dirs.css %>SimulatePay/base64.css": "<%= dirs.source_path %><%= dirs.less %>SimulatePay/base64.less"
+                }
+            },
+            couponadd: {
+                files: {
+                    "<%= dirs.dest_path %><%= dirs.css %>CouponAdd/main.css": "<%= dirs.source_path %><%= dirs.less %>CouponAdd/main.less",
+                    "<%= dirs.dest_path %><%= dirs.css %>CouponAdd/base64.css": "<%= dirs.source_path %><%= dirs.less %>CouponAdd/base64.less"
                 }
             }
         },
@@ -222,12 +234,24 @@ module.exports = function(grunt) {
                 src: ['*.ls'],
                 dest: '<%= dirs.dest_path %><%= dirs.js %>SimulatePay/',
                 ext: '.js'
+            },
+            couponadd: {
+                expand: true,
+                cwd: '<%= dirs.source_path %><%= dirs.ls %>CouponAdd/',
+                src: ['*.ls'],
+                dest: '<%= dirs.dest_path %><%= dirs.js %>CouponAdd/',
+                ext: '.js'
             }
         },
         browserify: {
             simulatepay: {
                 files: {
                     "<%= dirs.dest_path %><%= dirs.js %>SimulatePay/main.js": ["<%= dirs.dest_path %><%= dirs.js %>SimulatePay/index.js"]
+                }
+            },
+            couponadd: {
+                files: {
+                    "<%= dirs.dest_path %><%= dirs.js %>CouponAdd/main.js": ["<%= dirs.dest_path %><%= dirs.js %>CouponAdd/index.js"]
                 }
             }
         },
@@ -245,6 +269,21 @@ module.exports = function(grunt) {
                     'livescript:simulatepay',
                     'browserify:simulatepay',
                     'jade:simulatepay'
+                ]
+            },
+            couponadd: {
+                options: {
+                    livereload: lrPort,
+                    debounceDelay: debounceDelay
+                },
+                files: [
+                    '<%= dirs.source_path %>**/CouponAdd/**/**',
+                ],
+                tasks: [
+                    'less:couponadd',
+                    'livescript:couponadd',
+                    'browserify:couponadd',
+                    'jade:couponadd'
                 ]
             }
         },
@@ -279,7 +318,8 @@ module.exports = function(grunt) {
             dist: {
                 files: {
                     '<%= dirs.dest_path %><%= dirs.js %>ExtraCommon/extra.min.js': ['<%= dirs.dest_path %><%= dirs.js %>ExtraCommon/*.js'],
-                    '<%= dirs.dest_path %><%= dirs.js %>SimulatePay/main.min.js': ['<%= dirs.dest_path %><%= dirs.js %>SimulatePay/main.js']
+                    '<%= dirs.dest_path %><%= dirs.js %>SimulatePay/main.min.js': ['<%= dirs.dest_path %><%= dirs.js %>SimulatePay/main.js'],
+                    '<%= dirs.dest_path %><%= dirs.js %>CouponAdd/main.min.js': ['<%= dirs.dest_path %><%= dirs.js %>CouponAdd/main.js']
                 }
             }
         },
@@ -293,7 +333,9 @@ module.exports = function(grunt) {
             compress: {
                 files: {
                     '<%= dirs.dest_path %><%= dirs.css %>SimulatePay/main.min.css': ['<%= dirs.dest_path %><%= dirs.css %>SimulatePay/main.css'],
-                    '<%= dirs.dest_path %><%= dirs.css %>SimulatePay/base64.min.css': ['<%= dirs.dest_path %><%= dirs.css %>SimulatePay/base64.css']
+                    '<%= dirs.dest_path %><%= dirs.css %>SimulatePay/base64.min.css': ['<%= dirs.dest_path %><%= dirs.css %>SimulatePay/base64.css'],
+                    '<%= dirs.dest_path %><%= dirs.css %>CouponAdd/main.min.css': ['<%= dirs.dest_path %><%= dirs.css %>CouponAdd/main.css'],
+                    '<%= dirs.dest_path %><%= dirs.css %>CouponAdd/base64.min.css': ['<%= dirs.dest_path %><%= dirs.css %>CouponAdd/base64.css']
                 }
             }
         },

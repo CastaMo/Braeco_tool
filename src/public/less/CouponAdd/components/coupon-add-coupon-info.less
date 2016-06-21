@@ -1,0 +1,68 @@
+#CouponInfo {
+    .CouponInfo-wrapper {
+        .rounded-corners(4px);
+        max-width: 86%;
+        min-width: 295px;
+        background: rgba(255, 245, 214, 0.6);
+        margin: 0 auto;
+        .CouponInfo-container {
+        	padding: 20px 0 23px 0;
+            .coupon-field {
+                .background-norm();
+                .background-size(280px, 106px);
+                margin: 0 auto;
+                text-align: center;
+                .price {
+                	color: #910012;
+                }
+                .left-part {
+                	line-height: 24px;
+                	width: 76px;
+                	font-size: 20px;
+                	color: @orange-color;
+                	p.first {
+                		margin-top: 17px;
+                	}
+                }
+                .right-part {
+                	width: 190px;
+                	p.discount {
+                		line-height: 45px;
+                		font-size: 40px;
+                		margin-top: 16px;
+                		&:before {
+                			content: "￥";
+                			font-size: 26px;
+                		}
+                	}
+                	p.request {
+                		line-height: 18px;
+                		font-size: 16px;
+                		span.price:before {
+                			content: "￥";
+                			font-size: 12px;
+                		}
+                	}
+                }
+            }
+            .word-field {
+            	color: #fff;
+            	text-align: center;
+            	margin: 12px 0 14px 0;
+            	line-height: 22px;
+            }
+            .btn-field {
+            	.confirm-btn {
+            		text-align: center;
+            		.rounded-corners(5px);
+            		background-color: @orange-color;
+            		color: #fff;
+            		line-height: 48px;
+            		font-size: 20px;
+            		width: 200px;
+            		margin: 0 auto;
+            	}
+            }
+        }
+    }
+}

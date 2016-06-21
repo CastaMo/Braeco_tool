@@ -1,0 +1,35 @@
+extend index
+
+block headItem
+	link(rel='stylesheet' type='text/css' href='/public/css/CouponAdd/main.min.css')
+	link(rel='stylesheet' type='text/css' href='/public/css/CouponAdd/base64.min.css')
+
+block bottom
+	script(src='/public/js/ExtraCommon/extra.min.js' type='text/javascript')
+	script(src='/public/js/CouponAdd/main.min.js' type='text/javascript')
+
+
+block dinnerName
+	span <?=$coupon['dinner']?>
+
+block costReduce
+	p.price.discount.font-number-word <?=$coupon['cost_reduce']?>
+
+block cost
+	span.price.font-number-word <?=$coupon['cost']?>
+
+block endDate
+	span.font-number-word <?=$coupon['end_date']?>
+
+block costRule
+	span.require.font-number-word <?=$coupon['cost']?>
+
+block getMax
+	span.font-number-word <?=$coupon['max']?>
+
+block useMax
+	span.font-number-word 1
+
+block hideJSON
+	#hide-JSON.hide
+		<?=$data?>

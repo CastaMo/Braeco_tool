@@ -1,0 +1,170 @@
+@font-grey-color: #9B9B9B;
+@font-black-color: #4A4A4A;
+@grey-color: #F4F5F9;
+@yellow-color: #FFCC00;
+@border-grey-color: #E7E7EB;
+@brown-color: #D5CEC6;
+@deep-coffee-color: #441e01;
+@orange-color: #FFC107;
+@shallow-orange-color: #FFFCF6;
+@shallow-grey-color: #E3E3E3;
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.hide {
+    display: none;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    color: @font-black-color;
+    font-family: "Helvetica Neue", "Hiragino Sans GB", "Microsoft YaHei", "\9ED1\4F53", Arial, sans-serif;
+}
+
+ul li {
+    list-style-type: none;
+}
+
+input {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.left-part {
+    float: left;
+}
+
+.right-part {
+    float: right;
+}
+
+.clear {
+    clear: both;
+}
+
+.left-right-border {
+    border-left: solid 1px @border-grey-color;
+    border-right: solid 1px @border-grey-color;
+}
+
+.top-bottom-border {
+    border-top: solid 1px @border-grey-color;
+    border-bottom: solid 1px @border-grey-color;
+}
+
+.btn {
+    cursor: pointer;
+    padding: 0 15px;
+    float: left;
+    line-height: 30px;
+    .rounded-corners(5px);
+}
+
+.parallel-container {
+    > *:not(.clear) {
+        float: left;
+    }
+}
+
+.background-size (@width: 0, @height: 0) {
+    height: @height;
+    width: @width;
+    background-size: @width @height;
+}
+
+.shadow (@argus: 0px 3px 8px rgba(0, 0, 0, 0.349019607843137)) {
+    -moz-box-shadow: @argus;
+    -webkit-box-shadow: @argus;
+    box-shadow: @argus;
+}
+
+.rounded-corners (@radius: 5px) {
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    -ms-border-radius: @radius;
+    -o-border-radius: @radius;
+    border-radius: @radius;
+}
+
+.transition (@time: .3s) {
+    -webkit-transition: all @time ease-in-out;
+    -moz-transition: all @time ease-in-out;
+    -ms-transition: all @time ease-in-out;
+    -o-transition: all @time ease-in-out;
+    transition: all @time ease-in-out;
+    -webkit-backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    -moz-backface-visibility: hidden;
+    -moz-perspective: 1000;
+    backface-visibility: hidden;
+    perspective: 1000;
+}
+
+.background-norm(@elem: "none") {
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.horizontal-center {
+    position: absolute;
+    left: 50%;
+    .translate(-50%, 0);
+}
+
+.vertical-center {
+    position: absolute;
+    top: 50%;
+    .translate(0, -50%);
+}
+
+.total-center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    .translate(-50%, -50%);
+}
+
+.translate (@ver: 0, @hor: 0) {
+    .transform(translate3d(@ver, @hor, 0));
+}
+
+.transform (@str: scale(0, 0)) {
+    transform: @str;
+    -webkit-transform: @str;
+    -moz-transform: @str;
+    -ms-transform: @str;
+    -o-transform: @str;
+}
+
+.ellipsisWithLineNum (@num: 1) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: @num;
+    -webkit-box-orient: vertical;
+}
+
+.background-linear (@direction, @start, @end) {
+    background: -moz-linear-gradient(@direction, @start, @end);
+    background: -webkit-linear-gradient(@direction, @start, @end);
+    background: -o-linear-gradient(@direction, @start, @end);
+    background: -ms-linear-gradient(@direction, @start, @end);
+    background: linear-gradient(@direction, @start, @end);
+}
+
+.font-number-word {
+    font-family: Helvetica, Arial, Verdana;
+}

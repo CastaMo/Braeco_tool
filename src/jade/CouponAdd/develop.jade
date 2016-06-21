@@ -1,0 +1,37 @@
+extend index
+
+block headItem
+	link(rel='stylesheet' type='text/css' href='/public/css/CouponAdd/main.css')
+	link(rel='stylesheet' type='text/css' href='/public/css/CouponAdd/base64.css')
+
+block bottom
+	script(src='/public/js/ExtraCommon/pay.js' type='text/javascript')
+	script(src='/public/js/ExtraCommon/util.js' type='text/javascript')
+	script(src='/public/js/ExtraCommon/jquery.min.js' type='text/javascript')
+	script(src='/public/js/CouponAdd/main.js' type='text/javascript')
+
+
+block dinnerName
+	span 杯口咖啡 
+
+block costReduce
+	p.price.discount.font-number-word 10.0
+
+block cost
+	span.price.font-number-word 25
+
+block endDate
+	span.font-number-word 2016.08.31
+
+block costRule
+	span.require.font-number-word 25
+
+block getMax
+	span.font-number-word 2
+
+block useMax
+	span.font-number-word 1
+
+block hideJSON
+	#hide-JSON.hide
+		{"data":{"wxsign":{"noncestr":"20jjxdwlnx2geyvxrbxmq4wttay2yri1","timestamp":1466517062,"appid":"wx862323dac42227a9","signature":"3b0075b1285242b2217aceb77e6c57ef72920ea2"},"cardInfo":{"id":"pU6XcwytEWw-CSS6RkoUaZF3Y_9g","json":{"code":"","openid":"","timestamp":1466517062,"signature":"ee111784a6279d436d609a0a751a5967998cc509"},"coupon":{"cost":"cost","cost_reduce":"$cost_reduce","begin_date":"","end_date":"","dinner":"","max":"","daily":1}}}}
