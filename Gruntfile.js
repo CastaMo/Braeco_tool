@@ -28,7 +28,7 @@ module.exports = function(grunt) {
     grunt.initConfig({
         // Metadata.
         pkg: grunt.file.readJSON('package.json'),
-        secret: grunt.file.readJSON('../secret.json'),
+        secret: grunt.file.readJSON('../secret_for_formal.json'),
         dirs: grunt.file.readJSON('dirs.json'),
 
         banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
@@ -409,7 +409,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-usemin');
 
     grunt.registerTask('default', [
-        'clean:build',
+        'clean',
         'express',
         'copy:test',
         'less',
@@ -428,14 +428,15 @@ module.exports = function(grunt) {
         'hashmap'
     ]);
     grunt.registerTask('upload', [
+        'clean',
         'copy:test',
         'less',
         'livescript',
         'browserify',
         'cssmin',
         'uglify',
-        'clean:version',
         'hashmap',
+        'jade',
         'copy:versioncontrol',
         'sftp'
     ]);

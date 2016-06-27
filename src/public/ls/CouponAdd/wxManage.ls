@@ -1,11 +1,11 @@
 wx-manage = let
 	_state = null
 
-	_add-card-by-config-options = (options)!->
+	_add-card-by-config-options = (options, callback)!->
 		if typeof wx is "undefined" then return
 		wxConfigFailed = false
 		wx.config {
-			debug 		: 		true
+			debug 		: 		false
 			app-id 		:			options.wxsign.appid
 			timestamp : 		options.wxsign.timestamp
 			nonce-str : 		options.wxsign.noncestr
@@ -15,21 +15,22 @@ wx-manage = let
 
 		wx.ready !->
 			if wxConfigFailed then return
-			_add-card options
+			_add-card options, callback
 
 		wx.error (res)!->
 			wxConfigFailed 	:= true
 			innerCallback "fail", error("wx_config_error", res.errMsg)
 
 
-	_add-card = (options)!->
+	_add-card = (options, callback)!->
 		wx.add-card {
 			card-list 	: 	[{
 				card-id 	: 	options.card-info.id
 				card-ext 	: 	options.card-info.json
 			}]
-			success 		: 	(res)!-> alert "已添加: #{JSON.stringify(res.card-list)}"
-			cancel 			: 	(res)!-> alert JSON.stringify res
+			success 		: 	(res)!-> callback res
+			cancel 			: 	(res)!-> callback res
+			fail 				: 	(res)!-> callback res
 		}
 
 	innerCallback = (result, err)->
@@ -39,6 +40,6 @@ wx-manage = let
 
 	initial: !->
 
-	add-card: (options)!-> _add-card-by-config-options options
+	add-card: (options, callback)!-> _add-card-by-config-options options, callback
 
 module.exports = wx-manage
