@@ -5,6 +5,7 @@ require_ = wx = null
 
 main-manage = let
 
+	_hide-dom 					= $ "\#hide-dom"
 	_price-input-dom 		= $ "\#input-price"
 	_clear-btn-dom 			= $ "\#key-clear"
 	_confirm-btn-dom 		= $ "\#key-confirm"
@@ -30,6 +31,8 @@ main-manage = let
 			else clientWidth =  document.body.clientWidth
 		catch error
 			alert "窗口初始化失败，请使用其他手机扫码支付"
+
+		$ "img" .attr {"src" : _hide-dom.html!}
 
 		keyboard-width 	= clientWidth
 		keyboard-height =	clientWidth * 250 / 375
