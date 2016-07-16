@@ -13,14 +13,15 @@ main-manage = let
 
 	_init-all-Data = !->
 		_coupon-options := JSON.parse(_hide-JSON-dom.html!).data
-		console.log _coupon-options
 
 	_init-depend-module = !->
 		wx 				:= require "./wxManage.js"
 		require_ 	:= require "./requireManage.js"
 
 	_init-all-event = !->
-		_btn-dom.click !-> wx.add-card _coupon-options, _success-callback
+		_btn-dom.click ->
+			if _coupon-options.type is 0 then return window.location.href = "/Table/Home#-Home-Menu-x"
+			wx.add-card _coupon-options, _success-callback
 
 	_success-callback = (result)!->
 		require_.get("couponAdd").require {
