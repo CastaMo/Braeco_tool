@@ -20,6 +20,7 @@ main-manage = let
 	_decimal 						= ""
 
 	_total-number 			= ""
+	_result-number 			= ""
 
 	#1代表是整数输入，0代表是小数输入
 	_state 							= 1
@@ -117,6 +118,7 @@ main-manage = let
 	_confirm-btn-click-event = !->
 		if _able
 			_disable-btn!
+			_result-number := _total-number
 			require_.get("weixinPay").require {
 				data 			: 		_get-data-for-require!
 				callback 	: 		(result)-> _success-callback-for-ajax result
@@ -149,7 +151,7 @@ main-manage = let
 
 	_success-callback-for-weixin-pay = !->
 		_main-container-dom.add-class "finish"
-		_finish-amount-dom.html Number(_total-number)
+		_finish-amount-dom.html Number(_result-number)
 
 
 	initial: !->
