@@ -6,7 +6,7 @@ var renew = require('../renew');
 module.exports = function(passport) {
 
     router.get('/', function(req, res) {
-        res.redirect('/coupon/add/l4ng7cula0vbviejxt65wc2a5r2nz9rk');
+        res.redirect('/location/select/');
     });
 
     router.get('/pay/wx/Data', function(req, res) {
@@ -22,6 +22,10 @@ module.exports = function(passport) {
 
     router.get('/coupon/add/:code', function(req, res) {
         res.render('./CouponAdd/develop');
+    });
+
+    router.get('/location/select/', function(req, res) {
+        res.render('./LocationSelect/develop');
     });
 
     router.post('/pay/wx/:code', function(req, res) {

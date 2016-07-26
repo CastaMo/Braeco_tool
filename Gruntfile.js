@@ -202,6 +202,12 @@ module.exports = function(grunt) {
                     "<%= dirs.dest_path %>CouponAdd.html": "<%= dirs.source_path %><%= dirs.jade %>CouponAdd/develop.jade",
                     "<%= dirs.dest_path %>views/CouponAdd.php": "<%= dirs.source_path %><%= dirs.jade %>CouponAdd/formal.jade"
                 }
+            },
+            locationselect: {
+                files: {
+                    "<%= dirs.dest_path %>LocationSelect.html": "<%= dirs.source_path %><%= dirs.jade %>LocationSelect/develop.jade",
+                    "<%= dirs.dest_path %>views/LocationSelect.php": "<%= dirs.source_path %><%= dirs.jade %>LocationSelect/formal.jade"
+                }
             }
         },
         less: {
@@ -219,6 +225,12 @@ module.exports = function(grunt) {
                 files: {
                     "<%= dirs.dest_path %><%= dirs.css %>CouponAdd/main.css": "<%= dirs.source_path %><%= dirs.less %>CouponAdd/main.less",
                     "<%= dirs.dest_path %><%= dirs.css %>CouponAdd/base64.css": "<%= dirs.source_path %><%= dirs.less %>CouponAdd/base64.less"
+                }
+            },
+            locationselect: {
+                files: {
+                    "<%= dirs.dest_path %><%= dirs.css %>LocationSelect/main.css": "<%= dirs.source_path %><%= dirs.less %>LocationSelect/main.less",
+                    "<%= dirs.dest_path %><%= dirs.css %>LocationSelect/base64.css": "<%= dirs.source_path %><%= dirs.less %>LocationSelect/base64.less"
                 }
             }
         },
@@ -241,6 +253,13 @@ module.exports = function(grunt) {
                 src: ['*.ls'],
                 dest: '<%= dirs.dest_path %><%= dirs.js %>CouponAdd/',
                 ext: '.js'
+            },
+            locationselect: {
+                expand: true,
+                cwd: '<%= dirs.source_path %><%= dirs.ls %>LocationSelect/',
+                src: ['*.ls'],
+                dest: '<%= dirs.dest_path %><%= dirs.js %>LocationSelect/',
+                ext: '.js'
             }
         },
         browserify: {
@@ -252,6 +271,11 @@ module.exports = function(grunt) {
             couponadd: {
                 files: {
                     "<%= dirs.dest_path %><%= dirs.js %>CouponAdd/main.js": ["<%= dirs.dest_path %><%= dirs.js %>CouponAdd/index.js"]
+                }
+            },
+            locationselect: {
+                files: {
+                    "<%= dirs.dest_path %><%= dirs.js %>LocationSelect/main.js": ["<%= dirs.dest_path %><%= dirs.js %>LocationSelect/index.js"]
                 }
             }
         },
@@ -284,6 +308,21 @@ module.exports = function(grunt) {
                     'livescript:couponadd',
                     'browserify:couponadd',
                     'jade:couponadd'
+                ]
+            },
+            locationselect: {
+                options: {
+                    livereload: lrPort,
+                    debounceDelay: debounceDelay
+                },
+                files: [
+                    '<%= dirs.source_path %>**/LocationSelect/**/**',
+                ],
+                tasks: [
+                    'less:locationselect',
+                    'livescript:locationselect',
+                    'browserify:locationselect',
+                    'jade:locationselect'
                 ]
             }
         },
@@ -319,7 +358,8 @@ module.exports = function(grunt) {
                 files: {
                     '<%= dirs.dest_path %><%= dirs.js %>ExtraCommon/extra.min.js': ['<%= dirs.dest_path %><%= dirs.js %>ExtraCommon/*.js'],
                     '<%= dirs.dest_path %><%= dirs.js %>SimulatePay/main.min.js': ['<%= dirs.dest_path %><%= dirs.js %>SimulatePay/main.js'],
-                    '<%= dirs.dest_path %><%= dirs.js %>CouponAdd/main.min.js': ['<%= dirs.dest_path %><%= dirs.js %>CouponAdd/main.js']
+                    '<%= dirs.dest_path %><%= dirs.js %>CouponAdd/main.min.js': ['<%= dirs.dest_path %><%= dirs.js %>CouponAdd/main.js'],
+                    '<%= dirs.dest_path %><%= dirs.js %>LocationSelect/main.min.js': ['<%= dirs.dest_path %><%= dirs.js %>LocationSelect/main.js']
                 }
             }
         },
@@ -335,7 +375,9 @@ module.exports = function(grunt) {
                     '<%= dirs.dest_path %><%= dirs.css %>SimulatePay/main.min.css': ['<%= dirs.dest_path %><%= dirs.css %>SimulatePay/main.css'],
                     '<%= dirs.dest_path %><%= dirs.css %>SimulatePay/base64.min.css': ['<%= dirs.dest_path %><%= dirs.css %>SimulatePay/base64.css'],
                     '<%= dirs.dest_path %><%= dirs.css %>CouponAdd/main.min.css': ['<%= dirs.dest_path %><%= dirs.css %>CouponAdd/main.css'],
-                    '<%= dirs.dest_path %><%= dirs.css %>CouponAdd/base64.min.css': ['<%= dirs.dest_path %><%= dirs.css %>CouponAdd/base64.css']
+                    '<%= dirs.dest_path %><%= dirs.css %>CouponAdd/base64.min.css': ['<%= dirs.dest_path %><%= dirs.css %>CouponAdd/base64.css'],
+                    '<%= dirs.dest_path %><%= dirs.css %>LocationSelect/main.min.css': ['<%= dirs.dest_path %><%= dirs.css %>LocationSelect/main.css'],
+                    '<%= dirs.dest_path %><%= dirs.css %>LocationSelect/base64.min.css': ['<%= dirs.dest_path %><%= dirs.css %>LocationSelect/base64.css']
                 }
             }
         },
