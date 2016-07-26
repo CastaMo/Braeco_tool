@@ -5,19 +5,19 @@ require_ = wx = null
 
 main-manage = let
 
-	_hide-dom 					= $ "\#hide-dom"
-	_price-input-dom 		= $ "\#input-price"
-	_clear-btn-dom 			= $ "\#key-clear"
-	_confirm-btn-dom 		= $ "\#key-confirm"
+	_hide-dom 			= $ "\#hide-dom"
+	_price-input-dom 	= $ "\#input-price"
+	_clear-btn-dom 		= $ "\#key-clear"
+	_confirm-btn-dom 	= $ "\#key-confirm"
 	_main-container-dom = $ "\#main-container"
 	_finish-amount-dom 	= $ ".Payment-container p.amount"
 
-	_url 								= null
-	_able 							= false
+	_url 					= null
+	_able 					= false
 
-	_integer 						= "0"
-	_dot 								= ""
-	_decimal 						= ""
+	_integer 				= "0"
+	_dot 					= ""
+	_decimal 				= ""
 
 	_total-number 			= ""
 	_result-number 			= ""
