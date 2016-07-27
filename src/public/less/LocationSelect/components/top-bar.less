@@ -1,0 +1,63 @@
+#TopBar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 44px;
+	background-color: #000;
+	.TopBar-wrapper {
+		width: 90%;
+		margin: 0 auto;
+		.TopBar-container {
+			padding: 8px 0;
+			.left-part {
+				width: 100%;
+				width: -moz-calc(~"100% - 73px");
+				width: -webkit-calc(~"100% - 73px");
+				width: calc(~"100% - 73px");
+				height: 28px;
+			}
+			.right-part {
+				width: 56px;
+				line-height: 28px;
+			}
+			.input-field {
+				position: relative;
+				.search-icon {
+					position: absolute;
+					left: 6px;
+					top: 6px;
+					.background-norm();
+					.background-size(16px, 16px);
+				}
+				input {
+					height: 28px;
+					width: 100%;
+					padding-left: 28px;
+					.rounded-corners(5px);
+					border: solid 1px #fff;
+				}
+				.clear-icon {
+					position: absolute;
+					right: 7px;
+					top: 7px;
+					.background-norm();
+					.background-size(14px, 14px);
+				}
+			}
+			.location-field {
+				.left-part {
+					width: 35px;
+				}
+				.right-part {
+					width: 14px;
+					.arrow-icon {
+						.background-norm();
+						.background-size(14px, 9px);
+						margin-top: 9.5px;
+					}
+				}
+			}
+		}
+	}
+}
