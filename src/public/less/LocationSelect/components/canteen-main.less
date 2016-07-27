@@ -1,0 +1,56 @@
+#CanteenMain {
+	.CanteenMain-wrapper {
+		width: 95%;
+		margin: 0 auto;
+		.CanteenMain-container {
+			padding: 52px 0;
+			ul.canteen-list {
+				li {
+					border: solid 1px #fff;
+					.canteen-wrapper {
+						width: 94.7%;
+						margin: 0 auto;
+						.canteen-container {
+							padding: 9px 0;
+							.left-part {
+								.img {
+									.background-size(80px, 80px);
+									.background-norm();
+									background-color: #fff;
+								}
+							}
+							.right-part {
+								width: 100%;
+								width: -moz-calc(~"100% - 86px");
+								width: -webkit-calc(~"100% - 86px");
+								width: calc(~"100% - 86px");
+							}
+							.canteen-name-field {
+								line-height: 17px;
+								font-size: 12px;
+							}
+							.location-field {
+								margin-top: 4px;
+								line-height: 14px;
+								font-size: 10px;
+								height: 42px;
+								.ellipsisWithLineNum(3);
+								width: 100%;
+								width: -moz-calc(~"100% - 40px");
+								width: -webkit-calc(~"100% - 40px");
+								width: calc(~"100% - 40px");
+							}
+							.distance-field {
+								float: right;
+								p.distance {
+									color: #FFC107;
+									font-size: 12px;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
