@@ -5,5 +5,18 @@ body {
 	color: #fff;
 }
 
+#CanteenMain, #CitySelect {
+	display: none;
+}
+
+#braeco-main {
+	&.main #CanteenMain {
+		display: block;
+	}
+	&.city-select #CitySelect {
+		display: block;
+	}
+}
+
 @import "./components/top-bar";
 @import "./components/canteen-main";
