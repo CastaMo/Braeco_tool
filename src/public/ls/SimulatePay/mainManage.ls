@@ -1,6 +1,6 @@
 require_ = wx = null
 
-[			addListener] = 
+[			addListener] =
 	[		util.addListener]
 
 main-manage = let
@@ -68,14 +68,13 @@ main-manage = let
 		wx 				:= 		require "./wxManage.js"
 
 	_init-all-event = !->
-		
-		addListener _clear-btn-dom[0], "touchstart", !-> _clear-input-event!; _price-input-change-callback!
+		fastClick _clear-btn-dom[0], !-> _clear-input-event!; _price-input-change-callback!
 
-		addListener _confirm-btn-dom[0], "touchstart" !-> _confirm-btn-click-event!
+		fastClick _confirm-btn-dom[0], !-> _confirm-btn-click-event!
 
-		addListener ($ "\#key-0")[0], "touchstart", !-> _zero-input-event!; _price-input-change-callback!
+		fastClick ($ "\#key-0")[0], !-> _zero-input-event!; _price-input-change-callback!
 
-		addListener ($ "\#key-dot")[0], "touchstart", !-> _dot-input-event!; _price-input-change-callback!
+		fastClick ($ "\#key-dot")[0], !-> _dot-input-event!; _price-input-change-callback!
 
 		for let i in [1 to 9]
 			addListener ($ "\#key-#{i}")[0], "touchstart", !-> _number-not-zero-input-event String(i); _price-input-change-callback!
@@ -143,10 +142,11 @@ main-manage = let
 			appid: result.appid
 			timestamp: result.timestamp
 			noncestr: result.noncestr
-			signature: result.signature
+			signtype: result.signtype
 			package: result.package
 			signMD: result.signMD
 			callback: -> _success-callback-for-weixin-pay!
+			always: ->
 		}
 
 	_success-callback-for-weixin-pay = !->

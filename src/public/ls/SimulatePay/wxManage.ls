@@ -1,5 +1,5 @@
 wx-manage = let
-	_state = null
+	/*_state = null
 
 	callpay = (options)->
 		self = @
@@ -33,10 +33,28 @@ wx-manage = let
 	innerCallback = (result, err)->
 		if typeof @_resultCallback is "function"
 			if typeof err is "undefined" then err = @_error()
-			@_resultCallback(result, err)
+			@_resultCallback(result, err)*/
+
+	onBridgeReady = (options)->
+		WeixinJSBridge.invoke(
+			'getBrandWCPayRequest', {
+				"appId": "#{options.appid}"
+				"timeStamp": "#{options.timestamp}"
+				"nonceStr": "#{options.noncestr}"
+				"package": "#{options.package}"
+				"signType": "#{options.signtype}"
+				"paySign": "#{options.signMD}"
+			},
+			(res)->
+				options.always?()
+				if res.err_msg is "get_brand_wcpay_request:ok"
+					options.callback?()
+				else if res.err_msg is "get_brand_wcpay_request:fail"
+					alert "支付失败, #{JSON.stringify(res)}"
+		)
 
 	initial: !->
 
-	pay: (options) !-> callpay options
+	pay: (options) !-> onBridgeReady options
 
 module.exports = wx-manage
