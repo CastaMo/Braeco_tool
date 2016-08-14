@@ -25,6 +25,9 @@ main-manage = let
 	#1代表是整数输入，0代表是小数输入
 	_state 							= 1
 
+	#请求过程中，锁住键盘
+	_requireLock 					= 1
+
 
 	_init-style = !->
 		try
@@ -39,22 +42,22 @@ main-manage = let
 		keyboard-height =	clientWidth * 250 / 375
 
 		$ "\#Keyboard" .css {
-			"width" 				:		"#{keyboard-width}px"
+			"width" 				:	"#{keyboard-width}px"
 			"height" 				: 	"#{keyboard-height}px"
 		}
 
 		$ ".left-part .key-field > *:not(.clear)" .css {
-			"line-height" 	: 	"#{keyboard-height / 4}px"
+			"line-height" 			: 	"#{keyboard-height / 4}px"
 			"height" 				: 	"#{keyboard-height / 4}px"
 		}
 
 		$ ".right-part .key-field \#key-clear" .css {
-			"line-height" 	: 	"#{keyboard-height / 4}px"
+			"line-height" 			: 	"#{keyboard-height / 4}px"
 			"height" 				: 	"#{keyboard-height / 4}px"
 		}
 
 		$ ".right-part .key-field \#key-confirm" .css {
-			"line-height" 	: 	"#{keyboard-height / 4 * 3}px"
+			"line-height" 			: 	"#{keyboard-height / 4 * 3}px"
 			"height" 				: 	"#{keyboard-height / 4 * 3}px"
 		}
 
@@ -77,9 +80,10 @@ main-manage = let
 		fastClick ($ "\#key-dot")[0], !-> _dot-input-event!; _price-input-change-callback!
 
 		for let i in [1 to 9]
-			addListener ($ "\#key-#{i}")[0], "touchstart", !-> _number-not-zero-input-event String(i); _price-input-change-callback!
+			fastClick ($ "\#key-#{i}")[0], !-> _number-not-zero-input-event String(i); _price-input-change-callback!
 
 	_zero-input-event = !->
+		if not _requireLock then return
 		if _state
 			if _integer.length >= 5 then return
 			if _integer is "0" then return
@@ -89,6 +93,7 @@ main-manage = let
 			if _decimal is "" then _decimal := "0"
 
 	_number-not-zero-input-event = (number)!->
+		if not _requireLock then return
 		if _state
 			if _integer.length >= 5 then return
 			if _integer is "0" then _integer := number
@@ -98,15 +103,17 @@ main-manage = let
 			_decimal += number
 
 	_dot-input-event = !->
-		_state 	:= 0
+		if not _requireLock then return
+		_state 		:= 0
 		_dot 		:= "."
 
 	_clear-input-event = !->
-		_integer 						:= "0"
-		_dot 								:= ""
-		_decimal 						:= ""
+		if not _requireLock then return
+		_integer 				:= "0"
+		_dot 					:= ""
+		_decimal 				:= ""
 		_total-number 			:= ""
-		_state 							:= 1
+		_state 					:= 1
 
 	_price-input-change-callback = !->
 		_total-number := _integer + _dot + _decimal
@@ -116,12 +123,13 @@ main-manage = let
 
 	_confirm-btn-click-event = !->
 		if _able
+			_requireLock := 0
 			_disable-btn!
 			_result-number := _total-number
 			require_.get("weixinPay").require {
-				data 			: 		_get-data-for-require!
+				data 		: 		_get-data-for-require!
 				callback 	: 		(result)-> _success-callback-for-ajax result
-				always 		: 		-> _price-input-change-callback!
+				always 		: 		-> _price-input-change-callback!; _requireLock := 1
 			}
 
 	_enable-btn = !->
