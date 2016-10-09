@@ -1,0 +1,84 @@
+#info
+	.info-wrapper
+		.info-container
+			#user.hide
+				.user-wrapper
+					.user-container
+						.basic-info-item
+							.left-part.title
+								.title-field
+									p 用户信息
+							.right-part.info
+								.left-part.parallel-container.info-content
+									.name-field
+										p 王大锤
+									.sex-field
+										p 先生
+									.phone-field
+										p 18812341234
+									.clear
+								.right-part.info-icon
+									.arrow-field
+										.arrow-icon
+								.clear
+							.clear
+
+			#location
+				.location-wrapper
+					.location-container
+						ul.location-list
+						.location-add-btn
+							.parallel-container
+								.add-icon
+								p 新增配送地址
+								.clear
+			#dialog.hide
+				.full-cover
+				.all-dialog-field
+					.dialog.user-dialog.adapt-center.hide
+						.dialog-head
+							.title-field
+								p 用户信息
+							.close-field
+								.close-icon
+						.dialog-content
+							.dialog-content-wrapper
+								.dialog-content-container
+									.dialog-content-item
+										.left-part.name-input-field
+											input(name="name" id="name" placeholder="请输入您的姓名")
+										.right-part.sex-choose-field.parallel-container
+											.sex-item.male-choose.choose
+												p 先生
+											.sex-item.female-choose
+												p 女士
+											.clear
+										.clear
+									.dialog-content-item
+										.phone-input-field
+											input(name="phone" id="phone" placeholder="请输入您的手机号码")
+									.dialog-content-oper
+										.btn-field
+											.confirm-btn
+												p 确认
+					.dialog.location-dialog.adapt-center
+						.dialog-head
+							.title-field
+								p 修改配送地址
+							.close-field
+								.close-icon
+						.dialog-content
+							.dialog-content-wrapper
+								.dialog-content-container
+									.dialog-content-item
+										.location-select-field
+											.location-choose-icon
+											input(name="location-select" id="location-select" placeholder="请选择地点")
+											.arrow-icon
+									.dialog-content-item
+										.extra-location-input-field
+											input(name="extra-location" id="extra-location" placeholder="请输入详细地址，如楼层、门牌号")
+									.dialog-content-oper
+										.btn-field
+											.confirm-btn
+												p 确认

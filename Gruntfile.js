@@ -28,7 +28,7 @@ module.exports = function(grunt) {
     grunt.initConfig({
         // Metadata.
         pkg: grunt.file.readJSON('package.json'),
-        secret: grunt.file.readJSON('../secret_for_formal.json'),
+        secret: grunt.file.readJSON('../secret.json'),
         dirs: grunt.file.readJSON('dirs.json'),
 
         banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
@@ -208,6 +208,12 @@ module.exports = function(grunt) {
                     "<%= dirs.dest_path %>LocationSelect.html": "<%= dirs.source_path %><%= dirs.jade %>LocationSelect/develop.jade",
                     "<%= dirs.dest_path %>views/LocationSelect.php": "<%= dirs.source_path %><%= dirs.jade %>LocationSelect/formal.jade"
                 }
+            },
+            locationmanage: {
+                files: {
+                    "<%= dirs.dest_path %>TableLocation.html": "<%= dirs.source_path %><%= dirs.jade %>LocationManage/develop.jade",
+                    "<%= dirs.dest_path %>views/TableLocation.php": "<%= dirs.source_path %><%= dirs.jade %>LocationManage/formal.jade"
+                }
             }
         },
         less: {
@@ -231,6 +237,12 @@ module.exports = function(grunt) {
                 files: {
                     "<%= dirs.dest_path %><%= dirs.css %>LocationSelect/main.css": "<%= dirs.source_path %><%= dirs.less %>LocationSelect/main.less",
                     "<%= dirs.dest_path %><%= dirs.css %>LocationSelect/base64.css": "<%= dirs.source_path %><%= dirs.less %>LocationSelect/base64.less"
+                }
+            },
+            locationmanage: {
+                files: {
+                    "<%= dirs.dest_path %><%= dirs.css %>LocationManage/main.css": "<%= dirs.source_path %><%= dirs.less %>LocationManage/main.less",
+                    "<%= dirs.dest_path %><%= dirs.css %>LocationManage/base64.css": "<%= dirs.source_path %><%= dirs.less %>LocationManage/base64.less"
                 }
             }
         },
@@ -260,6 +272,13 @@ module.exports = function(grunt) {
                 src: ['*.ls'],
                 dest: '<%= dirs.dest_path %><%= dirs.js %>LocationSelect/',
                 ext: '.js'
+            },
+            locationmanage: {
+                expand: true,
+                cwd: '<%= dirs.source_path %><%= dirs.ls %>LocationManage/',
+                src: ['*.ls'],
+                dest: '<%= dirs.dest_path %><%= dirs.js %>LocationManage/',
+                ext: '.js'
             }
         },
         browserify: {
@@ -276,6 +295,11 @@ module.exports = function(grunt) {
             locationselect: {
                 files: {
                     "<%= dirs.dest_path %><%= dirs.js %>LocationSelect/main.js": ["<%= dirs.dest_path %><%= dirs.js %>LocationSelect/index.js"]
+                }
+            },
+            locationmanage: {
+                files: {
+                    "<%= dirs.dest_path %><%= dirs.js %>LocationManage/main.js": ["<%= dirs.dest_path %><%= dirs.js %>LocationManage/index.js"]
                 }
             }
         },
@@ -324,6 +348,21 @@ module.exports = function(grunt) {
                     'browserify:locationselect',
                     'jade:locationselect'
                 ]
+            },
+            locationmanage: {
+                options: {
+                    livereload: lrPort,
+                    debounceDelay: debounceDelay
+                },
+                files: [
+                    '<%= dirs.source_path %>**/LocationManage/**/**',
+                ],
+                tasks: [
+                    'less:locationmanage',
+                    'livescript:locationmanage',
+                    'browserify:locationmanage',
+                    'jade:locationmanage'
+                ]
             }
         },
 
@@ -359,7 +398,8 @@ module.exports = function(grunt) {
                     '<%= dirs.dest_path %><%= dirs.js %>ExtraCommon/extra.min.js': ['<%= dirs.dest_path %><%= dirs.js %>ExtraCommon/*.js'],
                     '<%= dirs.dest_path %><%= dirs.js %>SimulatePay/main.min.js': ['<%= dirs.dest_path %><%= dirs.js %>SimulatePay/main.js'],
                     '<%= dirs.dest_path %><%= dirs.js %>CouponAdd/main.min.js': ['<%= dirs.dest_path %><%= dirs.js %>CouponAdd/main.js'],
-                    '<%= dirs.dest_path %><%= dirs.js %>LocationSelect/main.min.js': ['<%= dirs.dest_path %><%= dirs.js %>LocationSelect/main.js']
+                    '<%= dirs.dest_path %><%= dirs.js %>LocationSelect/main.min.js': ['<%= dirs.dest_path %><%= dirs.js %>LocationSelect/main.js'],
+                    '<%= dirs.dest_path %><%= dirs.js %>LocationManage/main.min.js': ['<%= dirs.dest_path %><%= dirs.js %>LocationManage/main.js']
                 }
             }
         },
@@ -377,7 +417,9 @@ module.exports = function(grunt) {
                     '<%= dirs.dest_path %><%= dirs.css %>CouponAdd/main.min.css': ['<%= dirs.dest_path %><%= dirs.css %>CouponAdd/main.css'],
                     '<%= dirs.dest_path %><%= dirs.css %>CouponAdd/base64.min.css': ['<%= dirs.dest_path %><%= dirs.css %>CouponAdd/base64.css'],
                     '<%= dirs.dest_path %><%= dirs.css %>LocationSelect/main.min.css': ['<%= dirs.dest_path %><%= dirs.css %>LocationSelect/main.css'],
-                    '<%= dirs.dest_path %><%= dirs.css %>LocationSelect/base64.min.css': ['<%= dirs.dest_path %><%= dirs.css %>LocationSelect/base64.css']
+                    '<%= dirs.dest_path %><%= dirs.css %>LocationSelect/base64.min.css': ['<%= dirs.dest_path %><%= dirs.css %>LocationSelect/base64.css'],
+                    '<%= dirs.dest_path %><%= dirs.css %>LocationManage/main.min.css': ['<%= dirs.dest_path %><%= dirs.css %>LocationManage/main.css'],
+                    '<%= dirs.dest_path %><%= dirs.css %>LocationManage/base64.min.css': ['<%= dirs.dest_path %><%= dirs.css %>LocationManage/base64.css']
                 }
             }
         },

@@ -1,0 +1,68 @@
+/*-----------Popup Form Adapt Start--------------*/
+
+
+@keyframes animation-for-popup-form-adapt {
+    from {
+        .transform(translate3d(-50%, -85%, 0));
+        opacity: 0;
+    }
+    to {
+        .transform(translate3d(-50%, -70%, 0));
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes animation-for-popup-form-adapt
+/* Firefox */
+
+{
+    from {
+        .transform(translate3d(-50%, -85%, 0));
+        opacity: 0;
+    }
+    to {
+        .transform(translate3d(-50%, -70%, 0));
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes animation-for-popup-form-adapt
+/* Safari 和 Chrome */
+
+{
+    from {
+        .transform(translate3d(-50%, -85%, 0));
+        opacity: 0;
+    }
+    to {
+        .transform(translate3d(-50%, -70%, 0));
+        opacity: 1;
+    }
+}
+
+@-o-keyframes animation-for-popup-form-adapt
+/* Opera */
+
+{
+    from {
+        .transform(translate3d(-50%, -85%, 0));
+        opacity: 0;
+    }
+    to {
+        .transform(translate3d(-50%, -70%, 0));
+        opacity: 1;
+    }
+}
+
+
+/*-----------Popup Form Adapt End--------------*/
+
+.animation (@str) {
+    animation: @str;
+    -moz-animation: @str;
+    /* Firefox */
+    -webkit-animation: @str;
+    /* Safari and Chrome */
+    -o-animation: @str;
+    /* Opera */
+}
