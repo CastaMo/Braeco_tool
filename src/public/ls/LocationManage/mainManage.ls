@@ -176,6 +176,9 @@ main-manage = let
 				}
 				success: !~>
 					main-manage._select index
+					set-timeout !->
+						location.href = "/Table/Home\#chooseAddress"
+					, 500
 			}
 
 	set-temps: (temps)!->
@@ -184,7 +187,7 @@ main-manage = let
 
 	initial: (data)!->
 		_data := data
-		_order-price := Number($.getUrlParam("orderPrice"))
+		_order-price := Number((Number($.getUrlParam("orderPrice"))).to-fixed(2))
 		console.log _data
 		dinner = data.location.dinner
 		last-distance = data.ladder[data.ladder.length - 1][0]
